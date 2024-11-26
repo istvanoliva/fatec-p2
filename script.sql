@@ -25,3 +25,16 @@ BEGIN
     RAISE NOTICE 'Número de alunos aprovados com pais PhD: %', aprovados;
 END;
 $$;
+
+CREATE OR REPLACE PROCEDURE aprovados_estudaram_sozinhos(OUT aprovados INT)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    aprovados INTEGER;
+BEGIN
+    SELECT COUNT(*)
+    INTO aprovados
+    FROM students
+    WHERE grade <> 0 AND prep_study = 1;
+END;
+$$;
