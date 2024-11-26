@@ -38,3 +38,19 @@ BEGIN
     WHERE grade <> 0 AND prep_study = 1;
 END;
 $$;
+
+CREATE OR REPLACE FUNCTION salario_estudante_maior_410()
+RETURNS INT
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    contagem INT;
+BEGIN
+    SELECT COUNT(*)
+    INTO contagem
+    FROM students
+    WHERE salary = 5 AND prep_exam = 2;
+
+    RETURN contagem;
+END;
+$$;
